@@ -4,8 +4,6 @@ import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -58,11 +56,6 @@ public class User {
     @Column(name = "updated_at", insertable = false)
     private LocalDateTime updatedAt;
 
-    // ====== ENUM for Role ======
-    public enum Role {
-        CUSTOMER,
-        ADMIN
-    }
 
     // ====== Constructors ======
     public User() {}
