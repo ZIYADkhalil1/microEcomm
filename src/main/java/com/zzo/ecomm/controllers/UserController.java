@@ -1,7 +1,10 @@
 package com.zzo.ecomm.controllers;
 
+import com.zzo.ecomm.DTOs.UsersDTO;
 import com.zzo.ecomm.entities.User;
 import com.zzo.ecomm.services.UserService;
+
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,13 +14,18 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
 
-    // ✅ Spring will inject UserService here
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
-    @GetMapping
+    @GetMapping()
     public List<User> getAllUsers() {
         return userService.getAllUsers();
+    }
+    
+    @PostMapping("/addUser")
+    public String addUser(@RequestBody UsersDTO user) {
+    	userService.addUser(user);
+    	return "User Saved Succesfully";
     }
 }
