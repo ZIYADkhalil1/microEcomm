@@ -23,9 +23,26 @@ public class UserController {
         return userService.getAllUsers();
     }
     
-    @PostMapping("/addUser")
-    public String addUser(@RequestBody UsersDTO user) {
-    	userService.addUser(user);
-    	return "User Saved Succesfully";
+    
+    
+    @PostMapping("/createUser")
+    public String createUser(@RequestBody User user) {
+    	try {
+    	userService.createUser(user);
+    	return "User Added Succesfully";
+    	} catch (Exception e) {
+        	return "Error " + e.getMessage();    		
+    	}
     }
+    @PostMapping("/updateUser/{id}")
+    public String updateUser(@PathVariable long id, @RequestBody UsersDTO updatedUser) {
+    	try {
+    		userService.editUser(updatedUser, id);
+    		return "User Updated Succesfully";
+    	} catch(Exception e) {
+    		return "Error " + e.getMessage();
+    	}
+    }
+
+
 }
